@@ -13,7 +13,8 @@ class WithdrawalPasswordSettingDialog extends StatefulWidget {
 class _WithdrawalPasswordSettingDialogState extends State<WithdrawalPasswordSettingDialog> {
   
   var _list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0];
-  
+
+  ///自定义设置密码
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -149,6 +150,7 @@ class _WithdrawalPasswordSettingDialogState extends State<WithdrawalPasswordSett
 
   int _index = 0;
   List<String> _codeList = ["", "", "", "", "", ""];
+
 
   Widget _buildInputWidget(int p){
     return Expanded(

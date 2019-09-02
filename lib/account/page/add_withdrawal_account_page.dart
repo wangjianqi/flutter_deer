@@ -42,6 +42,7 @@ class _AddWithdrawalAccountPageState extends State<AddWithdrawalAccountPage> {
                       title: "账号类型",
                       content: _accountType,
                       onTap: () {
+                        ///账号类型
                         _showSelectAccountTypeDialog();
                       },
                     ),

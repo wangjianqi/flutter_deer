@@ -104,6 +104,7 @@ class _SMSVerifyDialogState extends State<SMSVerifyDialog> {
                 Expanded(
                   child: Stack(
                     children: <Widget>[
+                      ///可编辑输入框
                       EditableText(
                         controller: _controller,
                         focusNode: _focusNode,
@@ -169,6 +170,7 @@ class _SMSVerifyDialogState extends State<SMSVerifyDialog> {
                         s = _second;
                         _isClick = false;
                       });
+                      ///倒计时
                       _subscription = Observable.periodic(Duration(seconds: 1), (i) => i).take(_second).listen((i){
                         setState(() {
                           s = _second - i - 1;

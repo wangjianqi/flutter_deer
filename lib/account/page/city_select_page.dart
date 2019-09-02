@@ -44,6 +44,7 @@ class _CitySelectPageState extends State<CitySelectPage> {
         title: "开户地点",
       ),
       body: SafeArea(
+        ///城市选择
         child: AzListView(
           data: _cityList,
           itemBuilder: (context, model) => _buildListItem(model),

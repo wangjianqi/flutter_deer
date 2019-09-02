@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/account/models/withdrawal_account_model.dart';
 import 'package:flutter_deer/res/resources.dart';
@@ -15,9 +14,8 @@ class WithdrawalAccountPage extends StatefulWidget {
 }
 
 class _WithdrawalAccountPageState extends State<WithdrawalAccountPage> {
-  
   List<WithdrawalAccountModel> _list = [];
-  
+
   @override
   void initState() {
     super.initState();
@@ -26,77 +24,88 @@ class _WithdrawalAccountPageState extends State<WithdrawalAccountPage> {
     _list.add(WithdrawalAccountModel("李*", "工商银行", 0, "**** **** **** 5236"));
     _list.add(WithdrawalAccountModel("李*", "渤海银行", 0, "**** **** **** 2165"));
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        centerTitle: "提现账号",
-        actionName: "添加",
-        onPressed: (){
-          NavigatorUtils.push(context, AccountRouter.addWithdrawalAccountPage);
-        }
-      ),
-      body: _list.isEmpty ? const StateLayout(
-        type: StateType.account) : 
-      ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 22.0),
-        itemCount: _list.length,
-        itemExtent: 151.0,
-        itemBuilder: (_, index){
-          return Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: AccountCard(
-              type: _list[index].type,
-              child: InkWell(
-                //Toast.show("长按删除账号！");
-                onLongPress: (){
-                  _showDeleteBottomSheet(index);
-                },
-                child: SizedBox(
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        top: 25.0,
-                        left: 24.0,
-                        child: Container(
-                          height: 40.0,
-                          width: 40.0,
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: LoadAssetImage(_list[index].type == 1 ? "account/wechat" : "account/yhk")
+          centerTitle: "提现账号",
+          actionName: "添加",
+          onPressed: () {
+            NavigatorUtils.push(
+                context, AccountRouter.addWithdrawalAccountPage);
+          }),
+      body: _list.isEmpty
+          ? const StateLayout(type: StateType.account)
+          : ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 22.0),
+              itemCount: _list.length,
+              itemExtent: 151.0,
+              itemBuilder: (_, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: AccountCard(
+                    type: _list[index].type,
+                    child: InkWell(
+                      //Toast.show("长按删除账号！");
+                      onLongPress: () {
+                        _showDeleteBottomSheet(index);
+                      },
+                      child: SizedBox(
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned(
+                              top: 25.0,
+                              left: 24.0,
+                              child: Container(
+                                  height: 40.0,
+                                  width: 40.0,
+                                  padding: const EdgeInsets.all(8.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: LoadAssetImage(_list[index].type == 1
+                                      ? "account/wechat"
+                                      : "account/yhk")),
+                            ),
+                            Positioned(
+                              top: 22.0,
+                              left: 72.0,
+                              child: Text(_list[index].typeName,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: Dimens.font_sp18)),
+                            ),
+                            Positioned(
+                              top: 48.0,
+                              left: 72.0,
+                              child: Text(_list[index].name,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12.0)),
+                            ),
+                            Positioned(
+                              bottom: 24.0,
+                              left: 72.0,
+                              child: Text(_list[index].code,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: Dimens.font_sp18,
+                                      letterSpacing: 1.0)),
+                            ),
+                          ],
                         ),
                       ),
-                      Positioned(
-                        top: 22.0,
-                        left: 72.0,
-                        child: Text(_list[index].typeName, style: TextStyle(color: Colors.white, fontSize: Dimens.font_sp18)),
-                      ),
-                      Positioned(
-                        top: 48.0,
-                        left: 72.0,
-                        child: Text(_list[index].name, style: TextStyle(color: Colors.white, fontSize: 12.0)),
-                      ),
-                      Positioned(
-                        bottom: 24.0,
-                        left: 72.0,
-                        child: Text(_list[index].code, style: TextStyle(color: Colors.white, fontSize: Dimens.font_sp18, letterSpacing: 1.0)),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 
-  _showDeleteBottomSheet(int index){
+  ///删除
+  _showDeleteBottomSheet(int index) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -122,8 +131,9 @@ class _WithdrawalAccountPageState extends State<WithdrawalAccountPage> {
                       width: double.infinity,
                       child: FlatButton(
                         textColor: Colours.text_red,
-                        child: const Text("确认解绑", style: TextStyle(fontSize: Dimens.font_sp18)),
-                        onPressed: (){
+                        child: const Text("确认解绑",
+                            style: TextStyle(fontSize: Dimens.font_sp18)),
+                        onPressed: () {
                           setState(() {
                             _list.removeAt(index);
                           });
@@ -137,15 +147,15 @@ class _WithdrawalAccountPageState extends State<WithdrawalAccountPage> {
                       width: double.infinity,
                       child: FlatButton(
                         textColor: Colours.text_gray,
-                        child: const Text("取消", style: TextStyle(fontSize: Dimens.font_sp18)),
-                        onPressed: (){
+                        child: const Text("取消",
+                            style: TextStyle(fontSize: Dimens.font_sp18)),
+                        onPressed: () {
                           NavigatorUtils.goBack(context);
                         },
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
         );
       },
@@ -154,12 +164,8 @@ class _WithdrawalAccountPageState extends State<WithdrawalAccountPage> {
 }
 
 class AccountCard extends StatefulWidget {
-
-  const AccountCard({
-    Key key,
-    @required this.child,
-    this.type
-  }): super(key: key);
+  const AccountCard({Key key, @required this.child, this.type})
+      : super(key: key);
 
   final Widget child;
   final int type;
@@ -173,14 +179,20 @@ class _AccountCardState extends State<AccountCard> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [
-          BoxShadow(color: widget.type == 1 ? const Color(0x804EE07A) : const Color(0x805793FA), offset: Offset(0.0, 2.0), blurRadius: 8.0, spreadRadius: 0.0),
-        ],
-        gradient: LinearGradient(
-          colors: widget.type == 1 ? const [Color(0xFF40E6AE), Color(0xFF2DE062)] : const [Color(0xFF57C4FA), Colours.app_main]
-        )
-      ),
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+                color: widget.type == 1
+                    ? const Color(0x804EE07A)
+                    : const Color(0x805793FA),
+                offset: Offset(0.0, 2.0),
+                blurRadius: 8.0,
+                spreadRadius: 0.0),
+          ],
+          gradient: LinearGradient(
+              colors: widget.type == 1
+                  ? const [Color(0xFF40E6AE), Color(0xFF2DE062)]
+                  : const [Color(0xFF57C4FA), Colours.app_main])),
       child: widget.child,
     );
   }
