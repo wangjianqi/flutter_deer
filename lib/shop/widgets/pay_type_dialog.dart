@@ -27,6 +27,7 @@ class _PayTypeDialog extends State<PayTypeDialog>{
   List _selectValue;
   var _list = ["线上支付", "对公转账", "货到付款"];
 
+  ///Item
   Widget getItem(int index){
     _selectValue = widget.value ?? [0];
     return Material(

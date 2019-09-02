@@ -2,6 +2,7 @@
 // 只允许输入小数
 import 'package:flutter/services.dart';
 
+///格式
 class UsNumberTextInputFormatter extends TextInputFormatter {
   static const defaultDouble = 0.001;
   static double strToFloat(String str, [double defaultValue = defaultDouble]) {

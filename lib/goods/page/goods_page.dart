@@ -43,6 +43,7 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
     super.build(context);
     return Scaffold(
       appBar: AppBar(
+        ///会影响状态栏字体颜色
         brightness: Brightness.light,
         elevation: 0.0,
         backgroundColor: Colors.white,
@@ -142,7 +143,8 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
       _index = index;
     });
   }
-  
+
+  ///选择框
   _showSortMenu(){
     // 获取点击控件的坐标
     final RenderBox button = _buttonKey.currentContext.findRenderObject();
@@ -151,6 +153,7 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
     var a =  button.localToGlobal(Offset(0.0, button.size.height + 12.0), ancestor: overlay);
     // 获得控件右下方的坐标
     var b =  button.localToGlobal(button.size.bottomLeft(Offset(0, 12.0)), ancestor: overlay);
+    ///计算position
     final RelativeRect position = RelativeRect.fromRect(
       Rect.fromPoints(a, b),
       Offset.zero & overlay.size,
@@ -210,7 +213,9 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
     );
   }
 
+  ///显示弹框
   _showAddMenu(){
+    ///找到button
     final RenderBox button = _addKey.currentContext.findRenderObject();
     final RenderBox overlay = Overlay.of(context).context.findRenderObject();
     var a =  button.localToGlobal(Offset(button.size.width - 8.0, button.size.height - 12.0), ancestor: overlay);
@@ -219,6 +224,7 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
       Rect.fromPoints(a, b),
       Offset.zero & overlay.size,
     );
+    ///自定义
     showPopupWindow(
       context: context,
       fullWidth: false,
@@ -244,9 +250,10 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
                   NavigatorUtils.push(context, '${GoodsRouter.goodsEditPage}?isAdd=true&isScan=true', replace: true);
                 },
                 color: Colors.white,
+                  ///圆角
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
-                ),  
+                ),
                 icon: const LoadAssetImage("goods/scanning", width: 16.0, height: 16.0,), 
                 label: const Text("扫码添加", style: TextStyles.textDark14,)
               ),

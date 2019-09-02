@@ -124,6 +124,7 @@ class _OrderPageState extends State<OrderPage> with AutomaticKeepAliveClientMixi
       ),
       SliverPersistentHeader(
         pinned: true,
+        ///自定义
         delegate: SliverAppBarDelegate(
             DecoratedBox(
               decoration: BoxDecoration(

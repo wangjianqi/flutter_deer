@@ -49,6 +49,7 @@ class _AddressSelectPageState extends State<AddressSelectPage> {
       ),
       body: Column(
         children: <Widget>[
+          ///地图
           Expanded(
             flex: 9,
             child: AMap2DView(

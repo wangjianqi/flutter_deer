@@ -53,6 +53,7 @@ class _ShopSettingPageState extends State<ShopSettingPage> {
       resizeToAvoidBottomInset: false,
       appBar: const MyAppBar(),
       body: SafeArea(
+        ///使用Column和Expand SingleChildScrollView
         child: Column(
           children: <Widget>[
             Expanded(
@@ -130,6 +131,7 @@ class _ShopSettingPageState extends State<ShopSettingPage> {
                       title: "支付方式",
                       content: _getPayType(),
                       onTap: (){
+                        ///支付方式
                         showElasticDialog(
                             context: context,
                             barrierDismissible: false,

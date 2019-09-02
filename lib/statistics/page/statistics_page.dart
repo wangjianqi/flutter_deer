@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/order/page/order_page.dart';
 import 'package:flutter_deer/res/resources.dart';
@@ -18,6 +17,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      ///CustomScrollView
       body: CustomScrollView(
         physics: ClampingScrollPhysics(),
         slivers: _sliverBuilder(),
@@ -27,35 +27,44 @@ class _StatisticsPageState extends State<StatisticsPage> {
 
   List<Widget> _sliverBuilder() {
     return <Widget>[
+      ///AppBar
       SliverAppBar(
         leading: Gaps.empty,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
+        ///居中
         centerTitle: true,
         expandedHeight: 100.0,
         pinned: true,
         flexibleSpace: MyFlexibleSpaceBar(
-          background: const LoadAssetImage("statistic/statistic_bg",
+          background: const LoadAssetImage(
+            "statistic/statistic_bg",
             width: double.infinity,
             height: 115.0,
             fit: BoxFit.fill,
           ),
           centerTitle: true,
-          titlePadding: const EdgeInsetsDirectional.only(start: 16.0, bottom: 14.0),
+          titlePadding:
+              const EdgeInsetsDirectional.only(start: 16.0, bottom: 14.0),
           collapseMode: CollapseMode.pin,
           title: const Text('统计'),
         ),
       ),
+
+      ///Header
       SliverPersistentHeader(
         pinned: true,
+
+        ///自定义
         delegate: SliverAppBarDelegate(
+
+            ///背景图
             DecoratedBox(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(ImageUtils.getImgPath("statistic/statistic_bg1")),
-                      fit: BoxFit.fill
-                  )
-              ),
+                      image: AssetImage(
+                          ImageUtils.getImgPath("statistic/statistic_bg1")),
+                      fit: BoxFit.fill)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
@@ -68,7 +77,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
                           children: <Widget>[
                             const _StatisticsTab("新订单(单)", "xdd", "80"),
                             const _StatisticsTab("待配送(单)", "dps", "80"),
-                            const _StatisticsTab("今日交易额(元)", "jrjye", "8000.00"),
+                            const _StatisticsTab(
+                                "今日交易额(元)", "jrjye", "8000.00"),
                           ],
                         ),
                       ),
@@ -76,10 +86,11 @@ class _StatisticsPageState extends State<StatisticsPage> {
                   ],
                 ),
               ),
-            )
-            , 120.0
-        ),
+            ),
+            120.0),
       ),
+
+      ///BoxAdapter
       SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -90,6 +101,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
               Gaps.vGap16,
               const Text("数据走势", style: TextStyles.textBoldDark18),
               Gaps.vGap16,
+              ///图片
               const _StatisticsItem("订单统计", "sjzs", 1),
               Gaps.vGap8,
               const _StatisticsItem("交易额统计", "jyetj", 2),
@@ -101,11 +113,9 @@ class _StatisticsPageState extends State<StatisticsPage> {
       )
     ];
   }
-  
 }
 
 class _StatisticsItem extends StatelessWidget {
-
   const _StatisticsItem(this.title, this.img, this.index);
 
   final String title;
@@ -118,39 +128,43 @@ class _StatisticsItem extends StatelessWidget {
       aspectRatio: 2.14,
       child: MyCard(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
-            child: InkWell(
-              onTap: (){
-                if (index == 1 || index == 2){
-                  NavigatorUtils.push(context, '${StatisticsRouter.orderStatisticsPage}?index=$index');
-                }else{
-                  NavigatorUtils.push(context, StatisticsRouter.goodsStatisticsPage);
-                }
-              },
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(title, style: TextStyles.textBoldDark14),
-                        const LoadAssetImage("statistic/icon_selected", height: 16.0, width: 16.0)
-                      ],
-                    ),
-                  ),
-                  Expanded(child: LoadAssetImage("statistic/$img", fit: BoxFit.fill))
-                ],
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+        child: InkWell(
+          onTap: () {
+            if (index == 1 || index == 2) {
+              NavigatorUtils.push(context,
+                  '${StatisticsRouter.orderStatisticsPage}?index=$index');
+            } else {
+              NavigatorUtils.push(
+                  context, StatisticsRouter.goodsStatisticsPage);
+            }
+          },
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    ///标题
+                    Text(title, style: TextStyles.textBoldDark14),
+                    const LoadAssetImage("statistic/icon_selected",
+                        height: 16.0, width: 16.0)
+                  ],
+                ),
               ),
-            ),
-          )
-      ),
+              Expanded(
+                  child: LoadAssetImage("statistic/$img", fit: BoxFit.fill))
+            ],
+          ),
+        ),
+      )),
     );
   }
 }
 
+///
 class _StatisticsTab extends StatelessWidget {
-
   const _StatisticsTab(this.title, this.img, this.content);
 
   final String title;
@@ -167,7 +181,9 @@ class _StatisticsTab extends StatelessWidget {
           Gaps.vGap4,
           Text(title, style: TextStyles.textGray12),
           Gaps.vGap8,
-          Text(content, style: const TextStyle(fontSize: Dimens.font_sp18, color: Colours.text_dark)),
+          Text(content,
+              style: const TextStyle(
+                  fontSize: Dimens.font_sp18, color: Colours.text_dark)),
         ],
       ),
     );
