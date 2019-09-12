@@ -37,6 +37,7 @@ class _GoodsEditPageState extends State<GoodsEditPage> {
   
   void _getImage() async{
     try {
+      ///获取图片
       _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: 800);
       setState(() {});
     } catch (e) {
@@ -53,7 +54,8 @@ class _GoodsEditPageState extends State<GoodsEditPage> {
       }
     });
   }
-  
+
+  ///扫描二维码
   void _scan() async {
     String code = await Utils.scan();
     if (code != null){

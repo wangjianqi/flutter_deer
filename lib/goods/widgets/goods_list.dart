@@ -26,6 +26,7 @@ class GoodsList extends StatefulWidget {
 class _GoodsListState extends State<GoodsList> with AutomaticKeepAliveClientMixin<GoodsList>, SingleTickerProviderStateMixin {
   
   int _selectIndex = -1;
+  ///动画
   Animation<double> _animation;
   AnimationController _controller;
   List _list = [];

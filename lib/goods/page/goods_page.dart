@@ -302,6 +302,7 @@ class _TabView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(tabName),
+              ///显示子标题
               Offstage(offstage: selectIndex != index, child: Padding(
                 padding: const EdgeInsets.only(top: 1.0),
                 child: Text(tabSub, style: TextStyle(fontSize: Dimens.font_sp12)),

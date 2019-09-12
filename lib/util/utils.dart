@@ -17,6 +17,7 @@ class Utils {
 
   static Future<String> scan() async {
     try {
+      ///扫描二维码
       return await BarcodeScanner.scan();
     } catch (e) {
       if (e is PlatformException) {
